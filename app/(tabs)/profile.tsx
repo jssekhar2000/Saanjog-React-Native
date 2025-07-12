@@ -36,7 +36,7 @@ export default function ProfileScreen() {
     return null;
   }
 
-  const age = new Date().getFullYear() - new Date(user.dateOfBirth).getFullYear();
+  const age = new Date().getFullYear() - new Date(user?.dateOfBirth).getFullYear();
 
   const handleLogout = () => {
     Alert.alert(
@@ -83,18 +83,18 @@ export default function ProfileScreen() {
         <View style={styles.infoRow}>
           <MapPin size={SIZES.icon.sm} color={COLORS.text.secondary} />
           <Text style={styles.infoText}>
-            {user.city}, {user.state}, {user.country}
+            {user?.city}, {user?.state}, {user?.country}
           </Text>
         </View>
         
         <View style={styles.infoRow}>
           <Briefcase size={SIZES.icon.sm} color={COLORS.text.secondary} />
-          <Text style={styles.infoText}>{user.profession}</Text>
+          <Text style={styles.infoText}>{user?.profession}</Text>
         </View>
         
         <View style={styles.infoRow}>
           <GraduationCap size={SIZES.icon.sm} color={COLORS.text.secondary} />
-          <Text style={styles.infoText}>{user.education}</Text>
+          <Text style={styles.infoText}>{user?.education}</Text>
         </View>
       </View>
 
@@ -103,39 +103,39 @@ export default function ProfileScreen() {
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Height</Text>
-          <Text style={styles.detailValue}>{user.height}</Text>
+          <Text style={styles.detailValue}>{user?.height}</Text>
         </View>
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Religion</Text>
-          <Text style={styles.detailValue}>{user.religion}</Text>
+          <Text style={styles.detailValue}>{user?.religion}</Text>
         </View>
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Caste</Text>
-          <Text style={styles.detailValue}>{user.caste}</Text>
+          <Text style={styles.detailValue}>{user?.caste}</Text>
         </View>
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Marital Status</Text>
           <Text style={styles.detailValue}>
-            {user.maritalStatus.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+            {user?.maritalStatus?.replace('_', ' ').replace(/\b\w/g, l => l?.toUpperCase())}
           </Text>
         </View>
       </View>
 
-      {user.bio && (
+      {user?.bio && (
         <View style={styles.infoSection}>
           <Text style={styles.sectionTitle}>About Me</Text>
-          <Text style={styles.bioText}>{user.bio}</Text>
+          <Text style={styles.bioText}>{user?.bio}</Text>
         </View>
       )}
 
-      {user.interests.length > 0 && (
+      {user?.interests?.length > 0 && (
         <View style={styles.infoSection}>
           <Text style={styles.sectionTitle}>Interests</Text>
           <View style={styles.interestsContainer}>
-            {user.interests.map((interest, index) => (
+            {user?.interests?.map((interest, index) => (
               <View key={index} style={styles.interestChip}>
                 <Text style={styles.interestText}>{interest}</Text>
               </View>
@@ -149,7 +149,7 @@ export default function ProfileScreen() {
   const renderPhotosTab = () => (
     <View style={styles.tabContent}>
       <View style={styles.photosGrid}>
-        {user.photos.map((photo, index) => (
+        {user?.photos?.map((photo, index) => (
           <Image
             key={index}
             source={{ uri: photo }}
@@ -174,28 +174,28 @@ export default function ProfileScreen() {
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Age Range</Text>
           <Text style={styles.detailValue}>
-            {user.preferences.ageRange.min} - {user.preferences.ageRange.max} years
+            {user?.preferences?.ageRange?.min} - {user?.preferences?.ageRange?.max} years
           </Text>
         </View>
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Height Range</Text>
           <Text style={styles.detailValue}>
-            {user.preferences.heightRange.min} - {user.preferences.heightRange.max}
+            {user?.preferences?.heightRange?.min} - {user?.preferences?.heightRange?.max}
           </Text>
         </View>
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Religions</Text>
           <Text style={styles.detailValue}>
-            {user.preferences.religions.join(', ') || 'Any'}
+            {user?.preferences?.religions?.join(', ') || 'Any'}
           </Text>
         </View>
         
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Education</Text>
           <Text style={styles.detailValue}>
-            {user.preferences.educations.join(', ') || 'Any'}
+            {user?.preferences?.educations?.join(', ') || 'Any'}
           </Text>
         </View>
       </View>
@@ -235,17 +235,17 @@ export default function ProfileScreen() {
 
         <View style={styles.profileHeader}>
           <View style={styles.avatarContainer}>
-            <Image
+            {/* <Image
               source={{ uri: user?.profilePicture || user?.photos[0] }}
               style={styles.avatar}
               resizeMode="cover"
-            />
+            /> */}
             {user?.verified && (
               <View style={styles.verifiedBadge}>
                 <Shield size={SIZES.icon.xs} color={COLORS.background.primary} />
               </View>
             )}
-            {user.premium && (
+            {user?.premium && (
               <View style={styles.premiumBadge}>
                 <Crown size={SIZES.icon.xs} color={COLORS.warning} />
               </View>
@@ -253,7 +253,7 @@ export default function ProfileScreen() {
           </View>
           
           <Text style={styles.profileName}>
-            {user.firstName} {user.lastName}
+            {user?.firstName} {user?.lastName}
           </Text>
           <Text style={styles.profileAge}>{age} years old</Text>
           
